@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_204613) do
+ActiveRecord::Schema.define(version: 2020_03_13_210552) do
 
   create_table "ideas", force: :cascade do |t|
     t.string "title", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_03_13_204613) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "votes_count"
     t.index ["user_id"], name: "index_ideas_on_user_id"
   end
 
@@ -29,5 +30,17 @@ ActiveRecord::Schema.define(version: 2020_03_13_204613) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.integer "idea_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id", "user_id"], name: "index_votes_on_idea_id_and_user_id", unique: true
+    t.index ["idea_id"], name: "index_votes_on_idea_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "ideas", "users"
+  add_foreign_key "votes", "ideas"
+  add_foreign_key "votes", "users"
 end
