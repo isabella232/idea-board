@@ -1,6 +1,7 @@
 class Idea < ApplicationRecord
   belongs_to :user
   has_many :votes
+  has_many :comments
 
   scope :with_voter, ->(user) {
     # String interpolation is safe here because no user data is used.
