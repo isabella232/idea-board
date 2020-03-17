@@ -1,17 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 
-const IdeaCard = ({ id, title, body, history }) => {
+const IdeaCard = ({ id, title, body }) => {
   return (
-    <Card
-      className="my-3"
-      onClick={() => { history.push(`/ideas/${id}`); }}
-      style={{ cursor: "pointer" }}
-    >
+    <Card className="my-3">
       <CardBody>
-        <CardTitle>{ title }</CardTitle>
+        <CardTitle>
+          <Link to={`/ideas/${id}`}>{ title }</Link>
+        </CardTitle>
         <CardText>{ body }</CardText>
       </CardBody>
     </Card>
@@ -21,8 +19,7 @@ const IdeaCard = ({ id, title, body, history }) => {
 IdeaCard.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  history: PropTypes.object.isRequired
+  body: PropTypes.string.isRequired
 };
 
-export default withRouter(IdeaCard);
+export default IdeaCard;
