@@ -1,4 +1,4 @@
-const IDEA_STUBS = [
+export default [
   {
     id: 1,
     title: "Stub Idea 1",
@@ -13,7 +13,5 @@ const IDEA_STUBS = [
     id: 3,
     title: "Stub Idea 3",
     body: "ANOTHER new big idea!!!"
-  },
+  }
 ];
-
-export default IDEA_STUBS;
