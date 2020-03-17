@@ -6,8 +6,8 @@ import IdeaCard from "./IdeaCard";
 const IdeaIndex = () => {
   return (
     <div>
-      {IDEA_STUBS.map(({id, title, body}) => (
-        <IdeaCard key={id} title={title} body={body}/>
+      {IDEA_STUBS.map((idea) => (
+        <IdeaCard key={idea.id} {...idea}/>
       ))}
     </div>
   );
