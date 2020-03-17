@@ -3,13 +3,13 @@ module Api
     def execute
       context = {}
 
-      result = IdeaBoardSchema.execute(
+      result = IdeaBoardGraphql::Schema.execute(
         params[:query],
         variables: params[:variables] || {},
         context: context,
         operation_name: params[:operationName]
       )
-      
+
       render json: result
     rescue => e
       raise e unless Rails.env.development?
