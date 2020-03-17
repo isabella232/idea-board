@@ -18,7 +18,10 @@ const AuthManager = ({ children }) => {
   const [user, setUser] = useState(loadSession());
   const [isLoggingIn, setLoggingIn] = useState(false);
   const toggleLogin = useCallback(() => setLoggingIn(open => !open));
-  const logout = useCallback(() => setUser(null), []);
+  const logout = useCallback(() => {
+    setUser(null);
+    localStorage.removeItem(TOKEN_KEY);
+  }, []);
 
   const onSubmit = useCallback(async formData => {
     const res = await fetch("/api/tokens", {
