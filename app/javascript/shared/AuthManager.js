@@ -12,7 +12,15 @@ const AuthManager = ({ children }) => {
   const toggleLogin = useCallback(() => setLoggingIn(open => !open));
   const logout = useCallback(() => setUser(null), []);
 
-  const onSubmit = useCallback(user => {
+  const onSubmit = useCallback(async formData => {
+    const res = await fetch("/api/tokens", {
+      method: "post",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(formData)
+    });
+
+    const { user } = await res.json();
+
     setUser(user);
     setLoggingIn(false);
   });
