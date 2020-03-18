@@ -3,9 +3,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 
-const IdeaCard = ({ id, title, body }) => {
+import VoteButton from "./VoteButton";
+
+const IdeaCard = ({ id, title, body, voteCount, voted }) => {
   return (
-    <Card className="my-3">
+    <Card className="my-3 flex-row" >
+      <VoteButton
+        voteCount={voteCount}
+        onClick={() => { console.log("Clicked the button!") }}
+        voted={voted}
+      />
       <CardBody>
         <CardTitle>
           <Link to={`/ideas/${id}`}>{title}</Link>
@@ -19,7 +26,9 @@ const IdeaCard = ({ id, title, body }) => {
 IdeaCard.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
+  voteCount: PropTypes.number.isRequired,
+  voted: PropTypes.bool.isRequired
 };
 
 export default IdeaCard;
