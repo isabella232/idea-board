@@ -1,5 +1,5 @@
 module IdeaBoardGraphql
-  class UserRequiredMutation < Mutations::BaseMutation
+  class UserRequiredMutation < GraphQL::Schema::Mutation
     def ready?(**args)
       if context[:current_user].present?
         true
