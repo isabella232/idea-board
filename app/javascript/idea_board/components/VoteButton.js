@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 
-const VoteButton = ({ count, onClick, voted }) => (
+const VoteButton = ({ voteCount, onClick, voted }) => (
   <Button
     color={voted ? "secondary" : "primary"}
     onClick={onClick}
@@ -13,8 +14,14 @@ const VoteButton = ({ count, onClick, voted }) => (
         : (<ion-icon name="thumbs-up" />)
       }
     </span>
-    {count}
+    {voteCount}
   </Button>
 );
+
+VoteButton.propTypes = {
+  voteCount: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  voted: PropTypes.bool.isRequired
+};
 
 export default VoteButton;
