@@ -13,6 +13,8 @@ module Api
       )
 
       render json: result
+    rescue JWT::DecodeError => e
+      render json: { error: { message: 'Invalid Token' }, data: {} }, status: :bad_request
     rescue => e
       raise e unless Rails.env.development?
       handle_error_in_development e
