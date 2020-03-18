@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
+import { Check, ThumbsUp } from "react-feather"
 
 const VoteButton = ({ voteCount, onClick, voted }) => (
   <Button
@@ -10,8 +11,8 @@ const VoteButton = ({ voteCount, onClick, voted }) => (
   >
     <span className="mr-2">
       {voted
-        ? (<ion-icon name="checkmark" />)
-        : (<ion-icon name="thumbs-up" />)
+        ? <Check/>
+        : <ThumbsUp/>
       }
     </span>
     {voteCount}
