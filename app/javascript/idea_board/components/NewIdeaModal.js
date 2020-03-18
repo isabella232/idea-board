@@ -6,16 +6,16 @@ import * as Yup from "yup";
 
 import FormRow from "../../shared/FormRow";
 
-const loginSchema = Yup.object().shape({
+const newIdeaSchema = Yup.object().shape({
   title: Yup.string().required("Please enter an Idea title"),
-  description: Yup.string().required("Please enter an Idea description")
+  description: Yup.string()
 });
 
 const NewIdeaModal = ({ isOpen, toggle, onSubmit }) => (
   <Modal isOpen={isOpen} toggle={toggle}>
     <Formik
       initialValues={{ title: "", description: "" }}
-      validationSchema={loginSchema}
+      validationSchema={newIdeaSchema}
       onSubmit={onSubmit}
     >
       <Form noValidate>

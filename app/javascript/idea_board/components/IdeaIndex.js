@@ -13,14 +13,14 @@ const IdeaIndex = () => {
 
   return (
     <div>
-      {ideas.map(idea => (
-        <IdeaCard key={idea.id} {...idea} />
-      ))}
-
       <Button color="success" onClick={toggleNewIdeaModalOpen}>
         <Plus/>
         Add an Idea
       </Button>
+
+      {ideas.map(idea => (
+        <IdeaCard key={idea.id} {...idea} />
+      ))}
 
       <NewIdeaModal
         isOpen={isNewIdeaModalOpen}
