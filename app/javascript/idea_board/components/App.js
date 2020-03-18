@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 
 import Header from "./Header";
 import IdeaIndex from "./IdeaIndex";
-import IdeaShow from "./IdeaShow";
+import IdeaDetails from "./IdeaDetails";
 
 export default () => (
   <React.Fragment>
@@ -13,7 +13,7 @@ export default () => (
     <Container>
       <Switch>
         <Route path="/ideas/:id">
-          <IdeaShow />
+          <IdeaDetails />
         </Route>
         <Route path="/ideas">
           <IdeaIndex />
