@@ -5,7 +5,7 @@ module IdeaBoardGraphql
     ###############################################
     field :ping, String, null: false, description: "Test Query"
 
-    field :ideas, [Types::Idea], null: false
+    field :ideas, [Types::Idea], null: false, extras: [:lookahead]
     field :idea, Types::Idea, null: false do
       argument :id, GraphQL::Types::ID, required: true
     end
@@ -14,8 +14,18 @@ module IdeaBoardGraphql
       "pong"
     end
 
-    def ideas
-      Idea.all
+    def ideas(lookahead:)
+      query = Idea.all
+
+      if lookahead.selects?(:voted)
+        query = query.with_voter(context[:current_user])
+      end
+
+      if lookahead.selects?(:author)
+        query = query.includes(:user)
+      end
+
+      query
     end
 
     def idea(id:)
