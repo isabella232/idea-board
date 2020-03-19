@@ -5,6 +5,8 @@ module IdeaBoardGraphql
     ###############################################
     field :ping, String, null: false, description: "Test Mutation"
 
+    field :create_idea, mutation: Mutations::CreateIdea
+
     def ping
       "pong"
     end
