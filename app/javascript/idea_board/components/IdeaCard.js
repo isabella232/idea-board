@@ -5,12 +5,14 @@ import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 
 import VoteButton from "./VoteButton";
 
-const IdeaCard = ({ id, title, body, voteCount, voted }) => {
+const IdeaCard = ({ id, title, body, votes, voted }) => {
   return (
-    <Card className="my-3 flex-row" >
+    <Card className="my-3 flex-row">
       <VoteButton
-        voteCount={voteCount}
-        onClick={() => { console.log("Clicked the button!") }}
+        voteCount={votes}
+        onClick={() => {
+          console.log("Clicked the button!");
+        }}
         voted={voted}
       />
       <CardBody>
@@ -24,11 +26,15 @@ const IdeaCard = ({ id, title, body, voteCount, voted }) => {
 };
 
 IdeaCard.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  voteCount: PropTypes.number.isRequired,
-  voted: PropTypes.bool.isRequired
+  votes: PropTypes.number.isRequired,
+  body: PropTypes.string,
+  voted: PropTypes.bool
+};
+
+IdeaCard.defaultProps = {
+  voted: false
 };
 
 export default IdeaCard;
