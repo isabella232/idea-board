@@ -24,7 +24,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <BrowserRouter>
-    <AuthManager tokenName={TOKEN_NAME} onLogout={client.resetStore}>
+    <AuthManager
+      tokenName={TOKEN_NAME}
+      onLogin={client.resetStore}
+      onLogout={client.resetStore}
+    >
       <ApolloProvider client={client}>
         <IdeaBoard />
       </ApolloProvider>
