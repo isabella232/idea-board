@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.create(name: "Eliza", email: "eliza@invoca.com")
+idea = Idea.create(user: user, title: "A talk about GraphQL & Apollo", body: "The coolest talk")
+Vote.create(user: user, idea: idea)
