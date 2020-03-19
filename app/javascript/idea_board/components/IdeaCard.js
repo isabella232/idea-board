@@ -7,7 +7,7 @@ import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 import { VoteFor } from "./Ideas.graphql";
 import VoteButton from "./VoteButton";
 
-const IdeaCard = ({ id, title, body, votes, voted }) => {
+const IdeaCard = ({ id, title, body, votes, voted, author }) => {
   const [voteForIdea] = useMutation(VoteFor, { variables: { id } });
 
   return (
@@ -18,6 +18,7 @@ const IdeaCard = ({ id, title, body, votes, voted }) => {
           <Link to={`/ideas/${id}`}>{title}</Link>
         </CardTitle>
         <CardText>{body}</CardText>
+        <CardText>Suggested By {author}</CardText>
       </CardBody>
     </Card>
   );
@@ -28,10 +29,12 @@ IdeaCard.propTypes = {
   title: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   body: PropTypes.string,
+  author: PropTypes.string,
   voted: PropTypes.bool
 };
 
 IdeaCard.defaultProps = {
+  author: "",
   voted: false
 };
 

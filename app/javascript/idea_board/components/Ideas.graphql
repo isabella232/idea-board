@@ -3,6 +3,7 @@ query Ideas {
     id
     title
     body
+    author
     votes
     voted
   }
