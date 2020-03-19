@@ -4,17 +4,12 @@ import { Link, useParams } from "react-router-dom";
 import { Check, ThumbsUp } from "react-feather";
 import ReactMarkdown from "react-markdown";
 
-import { Idea } from "./Ideas.graphql";
+import ideas from "../sample_ideas";
 
 const IdeaDetails = () => {
   const { id } = useParams();
-  const { data, loading } = useQuery(Idea, { variables: { id } });
-
-  if (loading) {
-    return "Loading...";
-  }
-
-  const { title, body, votes, voted } = data.idea;
+  const idea = ideas[id - 1];
+  const { title, body, votes, voted } = idea;
 
   return (
     <div>
