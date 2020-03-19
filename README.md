@@ -1,13 +1,13 @@
 # Invoca Ideas Workshop Application
 
-Welcome to the GraphQL Workshop application! This Readme includes directions on how to your development environment up and running.
+Welcome to the GraphQL Workshop application! This README includes directions on how to your development environment up and running.
 
 ## Development Setup
 
 ### 1. Verify Base Libraries
 We rely on the following base libraries/languages/tools:
 
-- Rails v6
+- Ruby 2.6 (or greater)
 - Node v10.15 (or greater)
 - sqlite3
 - yarn
@@ -19,10 +19,10 @@ Please ensure that you have the above installed before continuing.
 The first step in starting development is to checkout the code locally, and install dependencies:
 
 ```bash
-$ bundle install`
+$ bundle install
 $ yarn install
 ```
-Both should pass successfully (you can ignore warnings)
+Both should pass successfully (you can ignore warnings). *Note* Both will take a while the first time you run them!  Please do so ahead of class!
 
 ### 3. Setup Database
 
