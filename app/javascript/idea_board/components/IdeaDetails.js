@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Link, useParams } from "react-router-dom";
 import { Check, ThumbsUp } from "react-feather";
+import ReactMarkdown from "react-markdown";
 
 import { Idea } from "./Ideas.graphql";
 
@@ -18,7 +19,7 @@ const IdeaDetails = () => {
   return (
     <div>
       <h1>{title}</h1>
-      <p>{body}</p>
+      <ReactMarkdown>{body}</ReactMarkdown>
       <p>
         <ThumbsUp className="mr-2" />
         {`${votes} team members have voted for this idea!`}
