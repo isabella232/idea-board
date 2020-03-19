@@ -27,3 +27,12 @@ mutation CreateIdea($title: String!, $body: String) {
     }
   }
 }
+
+mutation VoteFor($id: ID!) {
+  voteFor(idea: $id) {
+    idea {
+      id
+      votes
+    }
+  }
+}
