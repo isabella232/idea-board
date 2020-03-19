@@ -3,7 +3,7 @@ module IdeaBoardGraphql
     ###############################################
     # Sample/Test API
     ###############################################
-    field :ping, String, null: false, description: "Test Query"
+    field :ping, GraphQL::Types::String, null: false, description: "Test Query"
 
     field :ideas, [Types::Idea], null: false, extras: [:lookahead]
     field :idea, Types::Idea, null: false do

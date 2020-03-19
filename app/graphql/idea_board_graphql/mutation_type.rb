@@ -3,7 +3,7 @@ module IdeaBoardGraphql
     ###############################################
     # Sample/Test API
     ###############################################
-    field :ping, String, null: false, description: "Test Mutation"
+    field :ping, GraphQL::Types::String, null: false, description: "Test Mutation"
 
     field :create_idea, mutation: Mutations::CreateIdea
     field :vote_for, mutation: Mutations::VoteForIdea
