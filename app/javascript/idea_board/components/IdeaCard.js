@@ -26,14 +26,17 @@ const IdeaCard = ({ id, title, body, votes, voted, author }) => {
 
 IdeaCard.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  votes: PropTypes.number,
   body: PropTypes.string,
   author: PropTypes.string,
   voted: PropTypes.bool
 };
 
 IdeaCard.defaultProps = {
+  title: "",
+  body: "",
+  votes: 0,
   author: "",
   voted: false
 };
