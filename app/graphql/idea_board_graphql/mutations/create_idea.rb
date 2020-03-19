@@ -1,6 +1,6 @@
 module IdeaBoardGraphql
   module Mutations
-    class CreateIdea < UserRequiredMutation
+    class CreateIdea < BaseUserRequired
       field :idea, Types::Idea, null: true
 
       argument :title, GraphQL::Types::String, required: true
