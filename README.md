@@ -29,7 +29,13 @@ Both should pass successfully (you can ignore warnings). *Note* Both will take a
 We're using the ultra-simple `sqlite` database (as default with new rails projects). You'll need to get the schema loaded by running:
 
 ```bash
-$ bundle exec rails db:schema:load
+$ bundle exec rails db:setup
+```
+
+#### 3.a If you loaded the schema but need sample data
+
+```bash
+$ bundle exec rails db:seed
 ```
 
 ### 4. Start the Application and Client Pack server
