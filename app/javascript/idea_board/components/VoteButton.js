@@ -6,7 +6,7 @@ import { Check, ThumbsUp } from "react-feather";
 const VoteButton = ({ voteCount, onClick, voted }) => (
   <Button
     color={voted ? "secondary" : "primary"}
-    onClick={voted ? onClick : () => {}}
+    onClick={voted ? () => {} : onClick}
     disabled={voted}
   >
     <span className="mr-2">{voted ? <Check /> : <ThumbsUp />}</span>

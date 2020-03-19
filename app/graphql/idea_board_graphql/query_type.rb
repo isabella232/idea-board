@@ -17,7 +17,7 @@ module IdeaBoardGraphql
     def ideas(lookahead:)
       query = Idea.all
 
-      if lookahead.selects?(:voted)
+      if lookahead.selects?(:voted) && context[:current_user]
         query = query.with_voter(context[:current_user])
       end
 

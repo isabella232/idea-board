@@ -20,7 +20,7 @@ module IdeaBoardGraphql
       end
 
       def voted
-        object.voted(context[:current_user])
+        context[:current_user].present? && object.voted(context[:current_user])
       end
     end
   end

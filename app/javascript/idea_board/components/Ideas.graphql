@@ -4,6 +4,7 @@ query Ideas {
     title
     body
     votes
+    voted
   }
 }
 
@@ -14,6 +15,7 @@ query Idea($id: ID!) {
     body
     votes
     author
+    voted
   }
 }
 
@@ -24,6 +26,7 @@ mutation CreateIdea($title: String!, $body: String) {
       title
       body
       votes
+      voted
     }
   }
 }
@@ -33,6 +36,7 @@ mutation VoteFor($id: ID!) {
     idea {
       id
       votes
+      voted
     }
   }
 }
