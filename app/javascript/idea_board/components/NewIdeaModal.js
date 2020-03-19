@@ -8,7 +8,7 @@ import FormRow from "../../shared/FormRow";
 
 const newIdeaSchema = Yup.object().shape({
   title: Yup.string().required("Please enter an Idea title"),
-  description: Yup.string()
+  body: Yup.string()
 });
 
 const NewIdeaModal = ({ isOpen, toggle, onSubmit }) => (
@@ -22,7 +22,7 @@ const NewIdeaModal = ({ isOpen, toggle, onSubmit }) => (
         <ModalHeader>Add an Idea</ModalHeader>
         <ModalBody>
           <FormRow label="Title" name="title" />
-          <FormRow label="Description" name="description" />
+          <FormRow label="Description" name="body" type="textarea" rows={4} />
         </ModalBody>
         <ModalFooter>
           <Button block color="primary" type="submit">

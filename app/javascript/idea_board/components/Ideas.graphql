@@ -6,3 +6,14 @@ query Ideas {
     votes
   }
 }
+
+mutation CreateIdea($title: String!, $body: String) {
+  createIdea(title: $title, body: $body) {
+    idea {
+      id
+      title
+      body
+      votes
+    }
+  }
+}

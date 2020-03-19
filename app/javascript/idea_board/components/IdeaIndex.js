@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { Button } from "reactstrap";
 import { Plus } from "react-feather";
 
-import { Ideas } from "./Ideas.graphql";
-
-// import ideas from "../sample_ideas";
+import { Ideas, CreateIdea } from "./Ideas.graphql";
 
 import IdeaCard from "./IdeaCard";
 import NewIdeaModal from "./NewIdeaModal";
@@ -17,6 +15,15 @@ const IdeaIndex = () => {
   );
 
   const { data, loading } = useQuery(Ideas);
+  const [createIdea] = useMutation(CreateIdea, {
+    update(cache, { data }) {
+      const { ideas } = cache.readQuery({ query: Ideas });
+      cache.writeQuery({
+        query: Ideas,
+        data: { ideas: ideas.concat([data.createIdea.idea]) }
+      });
+    }
+  });
 
   if (loading) {
     return "Loading...";
@@ -40,8 +47,11 @@ const IdeaIndex = () => {
       <NewIdeaModal
         isOpen={isNewIdeaModalOpen}
         toggle={toggleNewIdeaModalOpen}
-        onSubmit={values => {
-          console.log(values);
+        onSubmit={async ({ title, body }) => {
+          await createIdea({
+            variables: { title, body }
+          });
+          setNewIdeaModalOpen(false);
         }}
       />
     </div>
