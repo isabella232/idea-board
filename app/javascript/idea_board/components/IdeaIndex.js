@@ -3,12 +3,14 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { Button } from "reactstrap";
 import { Plus } from "react-feather";
 
+import { useAuth } from "../../shared/AuthManager";
 import { Ideas, CreateIdea } from "./Ideas.graphql";
 
 import IdeaCard from "./IdeaCard";
 import NewIdeaModal from "./NewIdeaModal";
 
 const IdeaIndex = () => {
+  const { isAuthenticated } = useAuth();
   const [isNewIdeaModalOpen, setNewIdeaModalOpen] = useState(false);
   const toggleNewIdeaModalOpen = useCallback(() =>
     setNewIdeaModalOpen(open => !open)
@@ -33,7 +35,11 @@ const IdeaIndex = () => {
 
   return (
     <div>
-      <Button color="success" onClick={toggleNewIdeaModalOpen}>
+      <Button
+        color="success"
+        onClick={toggleNewIdeaModalOpen}
+        disabled={!isAuthenticated}
+      >
         <Plus />
         Add an Idea
       </Button>
