@@ -19,7 +19,7 @@ Please ensure that you have the above installed before continuing.
 The first step in starting development is to checkout the code locally, and install dependencies:
 
 ```bash
-$ bundle install
+$ bundle install --without production
 $ yarn install
 ```
 Both should pass successfully (you can ignore warnings). *Note* Both will take a while the first time you run them!  Please do so ahead of class!
