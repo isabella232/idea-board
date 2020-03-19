@@ -12,12 +12,13 @@ const loadSession = key => {
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 
-const AuthManager = ({ tokenName, children }) => {
+const AuthManager = ({ tokenName, onLogout, children }) => {
   const [user, setUser] = useState(loadSession(tokenName));
   const [isLoggingIn, setLoggingIn] = useState(false);
   const toggleLogin = useCallback(() => setLoggingIn(open => !open));
   const logout = useCallback(() => {
     setUser(null);
+    onLogout();
     localStorage.removeItem(tokenName);
   }, []);
 
@@ -57,7 +58,12 @@ const AuthManager = ({ tokenName, children }) => {
 
 AuthManager.propTypes = {
   tokenName: PropTypes.string.isRequired,
+  onLogout: PropTypes.func,
   children: PropTypes.node
+};
+
+AuthManager.defaultProps = {
+  onLogout: () => {}
 };
 
 export default AuthManager;
