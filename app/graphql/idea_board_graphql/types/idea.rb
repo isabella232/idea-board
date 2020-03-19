@@ -12,9 +12,15 @@ module IdeaBoardGraphql
             method: :votes_count
       field :author, GraphQL::Types::String, null: false,
             description: "The user who added this idea."
+      field :voted, GraphQL::Types::Boolean, null: false,
+            description: "Whether the current user voted for this idea."
 
       def author
         object.user.name
+      end
+
+      def voted
+        object.voted(context[:current_user])
       end
     end
   end
