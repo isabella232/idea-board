@@ -1,29 +1,34 @@
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
 import { Link, useParams } from "react-router-dom";
 import { Check, ThumbsUp } from "react-feather";
 
-import ideas from "../sample_ideas";
+import { Idea } from "./Ideas.graphql";
 
 const IdeaDetails = () => {
   const { id } = useParams();
+  const { data, loading } = useQuery(Idea, { variables: { id } });
 
-  // TODO: replace this with Apollo query based on id
-  const { title, body, voteCount, voted } = ideas.find(idea => idea.id === parseInt(id, 10));
+  if (loading) {
+    return "Loading...";
+  }
+
+  const { title, body, votes, voted } = data.idea;
 
   return (
     <div>
       <h1>{title}</h1>
       <p>{body}</p>
       <p>
-        <ThumbsUp className="mr-2"/>
-        {voteCount} team members have voted for this idea!
+        <ThumbsUp className="mr-2" />
+        {`${votes} team members have voted for this idea!`}
       </p>
-      { voted &&
+      {voted && (
         <p>
-          <Check className="mr-2"/>
+          <Check className="mr-2" />
           You voted for this idea!
         </p>
-      }
+      )}
       <Link to="/ideas">Back to Idea List</Link>
     </div>
   );

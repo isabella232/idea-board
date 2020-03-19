@@ -7,6 +7,16 @@ query Ideas {
   }
 }
 
+query Idea($id: ID!) {
+  idea(id: $id) {
+    id
+    title
+    body
+    votes
+    author
+  }
+}
+
 mutation CreateIdea($title: String!, $body: String) {
   createIdea(title: $title, body: $body) {
     idea {
