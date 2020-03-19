@@ -26,6 +26,7 @@ mutation CreateIdea($title: String!, $body: String) {
       id
       title
       body
+      author
       votes
       voted
     }
