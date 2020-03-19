@@ -4,23 +4,21 @@ import decode from "jwt-decode";
 
 import LoginModal from "./LoginModal";
 
-const TOKEN_KEY = "ideas-token";
-
-const loadSession = () => {
-  const token = localStorage.getItem(TOKEN_KEY);
+const loadSession = key => {
+  const token = localStorage.getItem(key);
   return token && decode(token);
 };
 
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 
-const AuthManager = ({ children }) => {
-  const [user, setUser] = useState(loadSession());
+const AuthManager = ({ tokenName, children }) => {
+  const [user, setUser] = useState(loadSession(tokenName));
   const [isLoggingIn, setLoggingIn] = useState(false);
   const toggleLogin = useCallback(() => setLoggingIn(open => !open));
   const logout = useCallback(() => {
     setUser(null);
-    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(tokenName);
   }, []);
 
   const onSubmit = useCallback(async formData => {
@@ -31,7 +29,7 @@ const AuthManager = ({ children }) => {
     });
 
     const { token, user } = await res.json();
-    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(tokenName, token);
 
     setUser(user);
     setLoggingIn(false);
@@ -58,6 +56,7 @@ const AuthManager = ({ children }) => {
 };
 
 AuthManager.propTypes = {
+  tokenName: PropTypes.string.isRequired,
   children: PropTypes.node
 };
 
