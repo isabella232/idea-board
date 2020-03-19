@@ -26,7 +26,7 @@ module Api
       id = if Rails.env.development?
         request.headers['User-Id'] || token_payload && token_payload["id"]
       else
-        token_payload["id"]
+        token_payload && token_payload["id"]
       end
 
       id && User.find_by_id(id)
