@@ -2,26 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import { Check, ThumbsUp } from "react-feather";
+import ButtonStyles from "../styles/IconButton.module.scss";
 
 import { useAuth } from "../../shared/AuthManager";
 
-const VoteButton = ({ voteCount, onClick, voted }) => {
+const VoteButton = ({ onClick, voted }) => {
   const { isAuthenticated } = useAuth();
 
   return (
     <Button
-      color={voted ? "secondary" : "primary"}
+      className={ButtonStyles.IconButton}
+      color={voted ? "secondary" : "success"}
       onClick={onClick}
       disabled={!isAuthenticated}
     >
-      <span className="mr-2">{voted ? <Check /> : <ThumbsUp />}</span>
-      {voteCount}
+      {voted ? <Check /> : <ThumbsUp />}
     </Button>
   );
 };
 
 VoteButton.propTypes = {
-  voteCount: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   voted: PropTypes.bool.isRequired
 };
