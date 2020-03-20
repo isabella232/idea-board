@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
+import { MessageSquare } from "react-feather";
 
 import { RemoveVote, AddVote } from "./Ideas.graphql";
 import VoteButton from "./VoteButton";
@@ -21,6 +22,9 @@ const IdeaCard = ({ id, title, body, votes, voted, author }) => {
         <CardText>{body}</CardText>
         <CardText>Suggested By {author}</CardText>
       </CardBody>
+      <Link to={`/ideas/${id}`} className="pt-2 pr-2">
+        <MessageSquare/>
+      </Link>
     </Card>
   );
 };
