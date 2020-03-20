@@ -42,3 +42,13 @@ mutation VoteFor($id: ID!) {
     }
   }
 }
+
+mutation RemoveVote($id: ID!) {
+  removeVote(idea: $id) {
+    idea {
+      id
+      votes
+      voted
+    }
+  }
+}

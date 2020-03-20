@@ -4,15 +4,16 @@ import { useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 
-import { VoteFor } from "./Ideas.graphql";
+import { RemoveVote, VoteFor } from "./Ideas.graphql";
 import VoteButton from "./VoteButton";
 
 const IdeaCard = ({ id, title, body, votes, voted, author }) => {
   const [voteForIdea] = useMutation(VoteFor, { variables: { id } });
+  const [removeVote] = useMutation(RemoveVote, { variables: { id } });
 
   return (
     <Card className="my-3 flex-row">
-      <VoteButton voteCount={votes} onClick={voteForIdea} voted={voted} />
+      <VoteButton voteCount={votes} onClick={voted ? removeVote : voteForIdea} voted={voted} />
       <CardBody>
         <CardTitle>
           <Link to={`/ideas/${id}`}>{title}</Link>
