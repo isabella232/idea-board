@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
+import { Card, CardBody, CardText } from "reactstrap";
 
 const CommentCard = ({ body, createdBy, createdAt }) =>  (
   <Card className="my-3 flex-row">
     <CardBody>
-      <CardTitle>{body}</CardTitle>
-      <CardSubtitle>{createdAt} by {createdBy}</CardSubtitle>
+      <CardText>{body}</CardText>
+      <CardText>{createdAt} by {createdBy}</CardText>
     </CardBody>
   </Card>
 );
