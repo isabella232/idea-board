@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, NavbarBrand, Nav, Container, Button } from "reactstrap";
+import { LogOut } from "react-feather";
 
 import { useAuth } from "../../shared/AuthManager";
+import ButtonStyles from "../styles/IconButton.module.scss";
 
 const Header = () => {
   const { isAuthenticated, user, toggleLogin, logout } = useAuth();
@@ -18,9 +20,10 @@ const Header = () => {
 
         {isAuthenticated ? (
           <div className="d-flex align-items-center">
-            {`Hi, ${user.name}`}
-            <Button color="link" onClick={logout}>
-              <i>Logout</i>
+            <span className="mr-1">{`Hi, ${user.name}`}</span>
+
+            <Button className={ButtonStyles.IconButton} onClick={logout}>
+              <LogOut />
             </Button>
           </div>
         ) : (
