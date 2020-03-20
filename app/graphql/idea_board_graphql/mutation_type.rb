@@ -8,7 +8,7 @@ module IdeaBoardGraphql
     end
 
     field :create_idea, mutation: Mutations::CreateIdea
-    field :vote_for, mutation: Mutations::VoteForIdea
+    field :add_vote, mutation: Mutations::AddVote
     field :remove_vote, mutation: Mutations::RemoveVote
 
     def ping(pong:)

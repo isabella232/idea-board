@@ -1,14 +1,14 @@
 module IdeaBoardGraphql
   module Mutations
-    class VoteForIdea < BaseUserRequired
+    class AddVote < BaseUserRequired
       field :idea, Types::Idea, null: false
 
-      argument :idea, GraphQL::Types::ID, required: true
+      argument :idea_id, GraphQL::Types::ID, required: true
 
-      def resolve(idea:)
-        voted_idea = Idea.find(idea);
-        vote = Vote.create!(idea: voted_idea, user: context[:current_user])
-        { idea: voted_idea }
+      def resolve(idea_id:)
+        idea = Idea.find(idea_id)
+        Vote.create!(idea: idea, user: context[:current_user])
+        { idea: idea.reload }
       rescue ActiveRecord::RecordInvalid => invalid
         if invalid.record.errors[:user]
           raise GraphQL::ExecutionError, "Duplicate Vote"
