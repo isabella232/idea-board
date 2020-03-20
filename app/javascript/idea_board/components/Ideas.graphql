@@ -1,3 +1,10 @@
+fragment Comment on Comment {
+  id
+  body
+  createdBy
+  createdAt
+}
+
 query Ideas {
   ideas {
     id
@@ -17,6 +24,9 @@ query Idea($id: ID!) {
     votes
     author
     voted
+    comments {
+      ...Comment
+    }
   }
 }
 

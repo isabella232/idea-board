@@ -5,6 +5,7 @@ import { Check, ThumbsUp } from "react-feather";
 import ReactMarkdown from "react-markdown";
 
 import { Idea } from "./Ideas.graphql";
+import CommentCard from "./CommentCard";
 
 const IdeaDetails = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const IdeaDetails = () => {
     return "Loading...";
   }
 
-  const { title, body, votes, voted } = data.idea;
+  const { title, body, votes, voted, comments } = data.idea;
 
   return (
     <div>
@@ -30,6 +31,10 @@ const IdeaDetails = () => {
           You voted for this idea!
         </p>
       )}
+      <h5>Comments ({comments.length})</h5>
+      { !!comments.length && comments.map( comment => (
+        <CommentCard key={comment.id} {...comment} />
+      ))}
       <Link to="/ideas">Back to Idea List</Link>
     </div>
   );
