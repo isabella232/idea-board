@@ -33,8 +33,18 @@ mutation CreateIdea($title: String!, $body: String) {
   }
 }
 
-mutation VoteFor($id: ID!) {
-  voteFor(idea: $id) {
+mutation AddVote($id: ID!) {
+  addVote(ideaId: $id) {
+    idea {
+      id
+      votes
+      voted
+    }
+  }
+}
+
+mutation RemoveVote($id: ID!) {
+  removeVote(ideaId: $id) {
     idea {
       id
       votes

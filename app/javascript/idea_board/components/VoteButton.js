@@ -12,7 +12,7 @@ const VoteButton = ({ voteCount, onClick, voted }) => {
     <Button
       color={voted ? "secondary" : "primary"}
       onClick={onClick}
-      disabled={voted || !isAuthenticated}
+      disabled={!isAuthenticated}
     >
       <span className="mr-2">{voted ? <Check /> : <ThumbsUp />}</span>
       {voteCount}
