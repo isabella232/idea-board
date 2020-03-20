@@ -14,6 +14,8 @@ module IdeaBoardGraphql
             description: "The user who added this idea."
       field :voted, GraphQL::Types::Boolean, null: false,
             description: "Whether the current user voted for this idea."
+      field :comments, [IdeaBoardGraphql::Types::Comment], null: false,
+            description: "The list of comments for this idea."
 
       def author
         object.user.name
