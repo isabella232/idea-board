@@ -37,6 +37,7 @@ const IdeaIndex = () => {
     <div>
       <Button
         color="success"
+        className="mb-4"
         onClick={toggleNewIdeaModalOpen}
         disabled={!isAuthenticated}
       >
