@@ -7,8 +7,9 @@ module IdeaBoardGraphql
       argument :pong, GraphQL::Types::String, required: false, default_value: "pong"
     end
 
-    field :create_idea, mutation: Mutations::CreateIdea
+    field :add_comment, mutation: Mutations::AddComment
     field :add_vote, mutation: Mutations::AddVote
+    field :create_idea, mutation: Mutations::CreateIdea
     field :remove_vote, mutation: Mutations::RemoveVote
 
     def ping(pong:)
