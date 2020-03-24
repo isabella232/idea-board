@@ -5,25 +5,30 @@ fragment Comment on Comment {
   createdAt
 }
 
+fragment IdeaSummary on Idea {
+  title
+  body
+  author
+}
+
+fragment VoteInfo on Idea {
+  votes
+  voted
+}
+
 query Ideas {
   ideas {
     id
-    title
-    body
-    author
-    votes
-    voted
+    ...IdeaSummary
+    ...VoteInfo
   }
 }
 
 query Idea($id: ID!) {
   idea(id: $id) {
     id
-    title
-    body
-    votes
-    author
-    voted
+    ...IdeaSummary
+    ...VoteInfo
     comments {
       ...Comment
     }
@@ -34,11 +39,8 @@ mutation CreateIdea($title: String!, $body: String) {
   createIdea(title: $title, body: $body) {
     idea {
       id
-      title
-      body
-      author
-      votes
-      voted
+      ...IdeaSummary
+      ...VoteInfo
     }
   }
 }
@@ -47,8 +49,7 @@ mutation AddVote($id: ID!) {
   addVote(ideaId: $id) {
     idea {
       id
-      votes
-      voted
+      ...VoteInfo
     }
   }
 }
@@ -57,8 +58,18 @@ mutation RemoveVote($id: ID!) {
   removeVote(ideaId: $id) {
     idea {
       id
-      votes
-      voted
+      ...VoteInfo
+    }
+  }
+}
+
+mutation AddComment($id: ID!, $text: String!) {
+  addComment(ideaId: $id, text: $text) {
+    idea {
+      id
+      comments {
+        ...Comment
+      }
     }
   }
 }
