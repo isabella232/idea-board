@@ -9,6 +9,8 @@ import { Ideas, CreateIdea } from "./Ideas.graphql";
 import IdeaCard from "./IdeaCard";
 import NewIdeaModal from "./NewIdeaModal";
 
+import { useQueryString } from "react-router-query-hooks";
+
 const IdeaIndex = () => {
   const { isAuthenticated } = useAuth();
   const [isNewIdeaModalOpen, setNewIdeaModalOpen] = useState(false);

@@ -21,6 +21,7 @@
     "react-feather": "^2.0.3",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.1.2",
+    "react-router-query-hooks": "https://github.com/aaronpanch/react-router-query-hooks",
     "reactstrap": "^8.4.1",
     "yup": "^0.28.3"
   },
